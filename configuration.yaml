@@ -1,0 +1,31 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+# Example configuration.yaml entry
+notify:
+  - name: gmail
+    platform: smtp
+    server: smtp.gmail.com
+    port: 587
+    timeout: 15
+    sender: misha.storozhuk@gmail.com
+    encryption: starttls
+    username: misha.storozhuk@gmail.com
+    password: !secret gmail_pass
+    recipient:
+      - misha.storozhuk@gmail.com
+
+    sender_name: Misha HA
+
+frontend:
+  themes: !include_dir_merge_named themes
+  
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
